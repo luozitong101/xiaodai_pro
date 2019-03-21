@@ -1,30 +1,15 @@
 package lzt.xiaodai.cn.mapper;
 
-import java.util.List;
+
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lzt.xiaodai.cn.entity.TAdmin;
-import lzt.xiaodai.cn.entity.TAdminExample;
 import org.apache.ibatis.annotations.Param;
 
-public interface TAdminMapper {
-    long countByExample(TAdminExample example);
 
-    int deleteByExample(TAdminExample example);
+public interface TAdminMapper extends BaseMapper<TAdmin> {
 
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(TAdmin record);
-
-    int insertSelective(TAdmin record);
-
-    List<TAdmin> selectByExample(TAdminExample example);
-
-    TAdmin selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("record") TAdmin record, @Param("example") TAdminExample example);
-
-    int updateByExample(@Param("record") TAdmin record, @Param("example") TAdminExample example);
-
-    int updateByPrimaryKeySelective(TAdmin record);
-
-    int updateByPrimaryKey(TAdmin record);
+    IPage<TAdmin> selectPageVo(Page page, @Param("condition") QueryWrapper<TAdmin> condition);
 }

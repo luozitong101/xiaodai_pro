@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lzt.xiaodai.cn.mapper.TItemMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TItem">
+        <id column="id" property="id" />
+        <result column="money" property="money" />
+        <result column="day" property="day" />
+        <result column="charge" property="charge" />
+        <result column="extends_1" property="extends1" />
+        <result column="extends_2" property="extends2" />
+        <result column="extends_3" property="extends3" />
+        <result column="refund" property="refund" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, money, day, charge, extends_1, extends_2, extends_3, refund
+    </sql>
+
+</mapper>

@@ -1,63 +1,47 @@
 package lzt.xiaodai.cn.entity;
 
-public class TIdentity {
+import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.TableField;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 身份认证
+ * </p>
+ *
+ * @author 来自底程序员的仰望
+ * @since 2019-03-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TIdentity implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     private Integer id;
 
+    /**
+     * 真实姓名
+     */
     private String realname;
 
+    /**
+     * 身份认证
+     */
     private String idcard;
 
+    /**
+     * 0 未认证 1 认证
+     */
     private Integer status;
-
+    @TableField("extends_1")
     private String extends1;
-
+    @TableField("extends_2")
     private String extends2;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRealname() {
-        return realname;
-    }
-
-    public void setRealname(String realname) {
-        this.realname = realname == null ? null : realname.trim();
-    }
-
-    public String getIdcard() {
-        return idcard;
-    }
-
-    public void setIdcard(String idcard) {
-        this.idcard = idcard == null ? null : idcard.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getExtends1() {
-        return extends1;
-    }
-
-    public void setExtends1(String extends1) {
-        this.extends1 = extends1 == null ? null : extends1.trim();
-    }
-
-    public String getExtends2() {
-        return extends2;
-    }
-
-    public void setExtends2(String extends2) {
-        this.extends2 = extends2 == null ? null : extends2.trim();
-    }
 }

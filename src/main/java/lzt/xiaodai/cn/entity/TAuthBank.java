@@ -1,83 +1,59 @@
 package lzt.xiaodai.cn.entity;
 
-public class TAuthBank {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 银行卡认证
+ * </p>
+ *
+ * @author 来自底程序员的仰望
+ * @since 2019-03-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TAuthBank implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 开户省市
+     */
     private String accountprovince;
 
+    /**
+     * 预留手机号码
+     */
     private String accountphone;
 
+    /**
+     * 开户行
+     */
     private String accountbank;
 
+    /**
+     * 开户银行卡
+     */
     private String accountcard;
 
+    /**
+     * 0 银行卡 未认证  1 已认证
+     */
     private Integer status;
-
+    @TableField("extends_1")
     private String extends1;
-
+    @TableField("extends_2")
     private String extends2;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getAccountprovince() {
-        return accountprovince;
-    }
-
-    public void setAccountprovince(String accountprovince) {
-        this.accountprovince = accountprovince == null ? null : accountprovince.trim();
-    }
-
-    public String getAccountphone() {
-        return accountphone;
-    }
-
-    public void setAccountphone(String accountphone) {
-        this.accountphone = accountphone == null ? null : accountphone.trim();
-    }
-
-    public String getAccountbank() {
-        return accountbank;
-    }
-
-    public void setAccountbank(String accountbank) {
-        this.accountbank = accountbank == null ? null : accountbank.trim();
-    }
-
-    public String getAccountcard() {
-        return accountcard;
-    }
-
-    public void setAccountcard(String accountcard) {
-        this.accountcard = accountcard == null ? null : accountcard.trim();
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public String getExtends1() {
-        return extends1;
-    }
-
-    public void setExtends1(String extends1) {
-        this.extends1 = extends1 == null ? null : extends1.trim();
-    }
-
-    public String getExtends2() {
-        return extends2;
-    }
-
-    public void setExtends2(String extends2) {
-        this.extends2 = extends2 == null ? null : extends2.trim();
-    }
 }

@@ -1,203 +1,112 @@
 package lzt.xiaodai.cn.entity;
 
-public class TInfo {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 个人信息包括职业信息社会关系
+ * </p>
+ *
+ * @author 来自底程序员的仰望
+ * @since 2019-03-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TInfo implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 亲属关系
+     */
     private String relation;
 
+    /**
+     * 社会关系
+     */
     private String socialrelation;
 
+    /**
+     * 亲属电话
+     */
     private String relationphone;
 
+    /**
+     * 社会联系人电话
+     */
     private String socialrelationphone;
 
+    /**
+     * 职业
+     */
     private String profession;
 
+    /**
+     * 月收入
+     */
     private String income;
 
+    /**
+     * 单位名称
+     */
     private String orgname;
 
+    /**
+     * 单位地址
+     */
     private String orgaddress;
 
+    /**
+     * 单位所属省市
+     */
     private String orgprovince;
 
+    /**
+     * 单位电话
+     */
     private String orgphone;
 
     private String qq;
 
     private String email;
 
+    /**
+     * 0 未婚   1 已婚
+     */
     private Integer maritalstatus;
 
+    /**
+     * 学历
+     */
     private String education;
 
+    /**
+     * 常驻地址
+     */
     private String homeaddress;
 
     private String extends1;
 
     private String extends2;
 
+    /**
+     * 身份证照片
+     */
     private Integer imageid;
 
+    /**
+     * 手机号码
+     */
     private String mobile;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getRelation() {
-        return relation;
-    }
-
-    public void setRelation(String relation) {
-        this.relation = relation == null ? null : relation.trim();
-    }
-
-    public String getSocialrelation() {
-        return socialrelation;
-    }
-
-    public void setSocialrelation(String socialrelation) {
-        this.socialrelation = socialrelation == null ? null : socialrelation.trim();
-    }
-
-    public String getRelationphone() {
-        return relationphone;
-    }
-
-    public void setRelationphone(String relationphone) {
-        this.relationphone = relationphone == null ? null : relationphone.trim();
-    }
-
-    public String getSocialrelationphone() {
-        return socialrelationphone;
-    }
-
-    public void setSocialrelationphone(String socialrelationphone) {
-        this.socialrelationphone = socialrelationphone == null ? null : socialrelationphone.trim();
-    }
-
-    public String getProfession() {
-        return profession;
-    }
-
-    public void setProfession(String profession) {
-        this.profession = profession == null ? null : profession.trim();
-    }
-
-    public String getIncome() {
-        return income;
-    }
-
-    public void setIncome(String income) {
-        this.income = income == null ? null : income.trim();
-    }
-
-    public String getOrgname() {
-        return orgname;
-    }
-
-    public void setOrgname(String orgname) {
-        this.orgname = orgname == null ? null : orgname.trim();
-    }
-
-    public String getOrgaddress() {
-        return orgaddress;
-    }
-
-    public void setOrgaddress(String orgaddress) {
-        this.orgaddress = orgaddress == null ? null : orgaddress.trim();
-    }
-
-    public String getOrgprovince() {
-        return orgprovince;
-    }
-
-    public void setOrgprovince(String orgprovince) {
-        this.orgprovince = orgprovince == null ? null : orgprovince.trim();
-    }
-
-    public String getOrgphone() {
-        return orgphone;
-    }
-
-    public void setOrgphone(String orgphone) {
-        this.orgphone = orgphone == null ? null : orgphone.trim();
-    }
-
-    public String getQq() {
-        return qq;
-    }
-
-    public void setQq(String qq) {
-        this.qq = qq == null ? null : qq.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public Integer getMaritalstatus() {
-        return maritalstatus;
-    }
-
-    public void setMaritalstatus(Integer maritalstatus) {
-        this.maritalstatus = maritalstatus;
-    }
-
-    public String getEducation() {
-        return education;
-    }
-
-    public void setEducation(String education) {
-        this.education = education == null ? null : education.trim();
-    }
-
-    public String getHomeaddress() {
-        return homeaddress;
-    }
-
-    public void setHomeaddress(String homeaddress) {
-        this.homeaddress = homeaddress == null ? null : homeaddress.trim();
-    }
-
-    public String getExtends1() {
-        return extends1;
-    }
-
-    public void setExtends1(String extends1) {
-        this.extends1 = extends1 == null ? null : extends1.trim();
-    }
-
-    public String getExtends2() {
-        return extends2;
-    }
-
-    public void setExtends2(String extends2) {
-        this.extends2 = extends2 == null ? null : extends2.trim();
-    }
-
-    public Integer getImageid() {
-        return imageid;
-    }
-
-    public void setImageid(Integer imageid) {
-        this.imageid = imageid;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
 }

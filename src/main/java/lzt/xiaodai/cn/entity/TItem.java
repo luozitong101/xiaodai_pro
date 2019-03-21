@@ -1,85 +1,58 @@
 package lzt.xiaodai.cn.entity;
 
-import java.util.Date;
+import com.baomidou.mybatisplus.annotation.IdType;
+import java.time.LocalDate;
 
-public class TItem {
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 
+ * </p>
+ *
+ * @author 来自底程序员的仰望
+ * @since 2019-03-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TItem implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 借款金额
+     */
     private Integer money;
 
+    /**
+     * 借款时间
+     */
     private Integer day;
 
+    /**
+     * 手续费
+     */
     private Double charge;
-
+    @TableField("extends_1")
     private String extends1;
-
+    @TableField("extends_2")
     private String extends2;
-
+    @TableField("extends_3")
     private String extends3;
 
-    private Date refund;
+    /**
+     * 还款日期
+     */
+    private LocalDate refund;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getMoney() {
-        return money;
-    }
-
-    public void setMoney(Integer money) {
-        this.money = money;
-    }
-
-    public Integer getDay() {
-        return day;
-    }
-
-    public void setDay(Integer day) {
-        this.day = day;
-    }
-
-    public Double getCharge() {
-        return charge;
-    }
-
-    public void setCharge(Double charge) {
-        this.charge = charge;
-    }
-
-    public String getExtends1() {
-        return extends1;
-    }
-
-    public void setExtends1(String extends1) {
-        this.extends1 = extends1 == null ? null : extends1.trim();
-    }
-
-    public String getExtends2() {
-        return extends2;
-    }
-
-    public void setExtends2(String extends2) {
-        this.extends2 = extends2 == null ? null : extends2.trim();
-    }
-
-    public String getExtends3() {
-        return extends3;
-    }
-
-    public void setExtends3(String extends3) {
-        this.extends3 = extends3 == null ? null : extends3.trim();
-    }
-
-    public Date getRefund() {
-        return refund;
-    }
-
-    public void setRefund(Date refund) {
-        this.refund = refund;
-    }
 }

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lzt.xiaodai.cn.mapper.TAuthBankMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TAuthBank">
+        <id column="id" property="id" />
+        <result column="accountprovince" property="accountprovince" />
+        <result column="accountphone" property="accountphone" />
+        <result column="accountbank" property="accountbank" />
+        <result column="accountcard" property="accountcard" />
+        <result column="status" property="status" />
+        <result column="extends_1" property="extends1" />
+        <result column="extends_2" property="extends2" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, accountprovince, accountphone, accountbank, accountcard, status, extends_1, extends_2
+    </sql>
+
+</mapper>

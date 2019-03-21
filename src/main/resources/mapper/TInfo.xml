@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lzt.xiaodai.cn.mapper.TInfoMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TInfo">
+        <id column="id" property="id" />
+        <result column="relation" property="relation" />
+        <result column="socialrelation" property="socialrelation" />
+        <result column="relationphone" property="relationphone" />
+        <result column="socialrelationphone" property="socialrelationphone" />
+        <result column="profession" property="profession" />
+        <result column="income" property="income" />
+        <result column="orgname" property="orgname" />
+        <result column="orgaddress" property="orgaddress" />
+        <result column="orgprovince" property="orgprovince" />
+        <result column="orgphone" property="orgphone" />
+        <result column="qq" property="qq" />
+        <result column="email" property="email" />
+        <result column="maritalstatus" property="maritalstatus" />
+        <result column="education" property="education" />
+        <result column="homeaddress" property="homeaddress" />
+        <result column="extends_1" property="extends1" />
+        <result column="extends_2" property="extends2" />
+        <result column="imageid" property="imageid" />
+        <result column="mobile" property="mobile" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, relation, socialrelation, relationphone, socialrelationphone, profession, income, orgname, orgaddress, orgprovince, orgphone, qq, email, maritalstatus, education, homeaddress, extends_1, extends_2, imageid, mobile
+    </sql>
+
+</mapper>

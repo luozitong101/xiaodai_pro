@@ -1,103 +1,71 @@
 package lzt.xiaodai.cn.entity;
 
-public class TProject {
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
+import java.io.Serializable;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+
+/**
+ * <p>
+ * 对应用户的所有借款信息 
+ * </p>
+ *
+ * @author 来自底程序员的仰望
+ * @since 2019-03-21
+ */
+@Data
+@EqualsAndHashCode(callSuper = false)
+@Accessors(chain = true)
+public class TProject implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
+    /**
+     * 关联的用户信息id
+     */
     private Integer infoid;
 
+    /**
+     * 关联银行卡认证id
+     */
     private Integer authbankid;
 
+    /**
+     * 关联手机认证id
+     */
     private Integer authmobileid;
 
+    /**
+     * 关联身份认证id
+     */
     private Integer identityid;
 
+    /**
+     * 关联注册用户id
+     */
     private Integer registerid;
 
+    /**
+     * 关联借款项id
+     */
     private Integer itemid;
 
     private String extends1;
 
+    /**
+     * 关联审核id
+     */
     private Integer auditid;
 
+    /**
+     * 手机号
+     */
     private String mobile;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public Integer getInfoid() {
-        return infoid;
-    }
-
-    public void setInfoid(Integer infoid) {
-        this.infoid = infoid;
-    }
-
-    public Integer getAuthbankid() {
-        return authbankid;
-    }
-
-    public void setAuthbankid(Integer authbankid) {
-        this.authbankid = authbankid;
-    }
-
-    public Integer getAuthmobileid() {
-        return authmobileid;
-    }
-
-    public void setAuthmobileid(Integer authmobileid) {
-        this.authmobileid = authmobileid;
-    }
-
-    public Integer getIdentityid() {
-        return identityid;
-    }
-
-    public void setIdentityid(Integer identityid) {
-        this.identityid = identityid;
-    }
-
-    public Integer getRegisterid() {
-        return registerid;
-    }
-
-    public void setRegisterid(Integer registerid) {
-        this.registerid = registerid;
-    }
-
-    public Integer getItemid() {
-        return itemid;
-    }
-
-    public void setItemid(Integer itemid) {
-        this.itemid = itemid;
-    }
-
-    public String getExtends1() {
-        return extends1;
-    }
-
-    public void setExtends1(String extends1) {
-        this.extends1 = extends1 == null ? null : extends1.trim();
-    }
-
-    public Integer getAuditid() {
-        return auditid;
-    }
-
-    public void setAuditid(Integer auditid) {
-        this.auditid = auditid;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
-    }
 }
