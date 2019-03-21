@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="lzt.xiaodai.cn.mapper.TProjectMapper">
+  <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TProject">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="infoid" jdbcType="INTEGER" property="infoid" />
+    <result column="authbankid" jdbcType="INTEGER" property="authbankid" />
+    <result column="authmobileid" jdbcType="INTEGER" property="authmobileid" />
+    <result column="identityid" jdbcType="INTEGER" property="identityid" />
+    <result column="registerid" jdbcType="INTEGER" property="registerid" />
+    <result column="itemid" jdbcType="INTEGER" property="itemid" />
+    <result column="extends_1" jdbcType="VARCHAR" property="extends1" />
+    <result column="auditid" jdbcType="INTEGER" property="auditid" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, infoid, authbankid, authmobileid, identityid, registerid, itemid, extends_1, 
+    auditid, mobile
+  </sql>
+  <select id="selectByExample" parameterType="lzt.xiaodai.cn.entity.TProjectExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    'true' as QUERYID,
+    <include refid="Base_Column_List" />
+    from t_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_project
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_project
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="lzt.xiaodai.cn.entity.TProjectExample">
+    delete from t_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="lzt.xiaodai.cn.entity.TProject">
+    insert into t_project (id, infoid, authbankid, 
+      authmobileid, identityid, registerid, 
+      itemid, extends_1, auditid, 
+      mobile)
+    values (#{id,jdbcType=INTEGER}, #{infoid,jdbcType=INTEGER}, #{authbankid,jdbcType=INTEGER}, 
+      #{authmobileid,jdbcType=INTEGER}, #{identityid,jdbcType=INTEGER}, #{registerid,jdbcType=INTEGER}, 
+      #{itemid,jdbcType=INTEGER}, #{extends1,jdbcType=VARCHAR}, #{auditid,jdbcType=INTEGER}, 
+      #{mobile,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="lzt.xiaodai.cn.entity.TProject">
+    insert into t_project
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="infoid != null">
+        infoid,
+      </if>
+      <if test="authbankid != null">
+        authbankid,
+      </if>
+      <if test="authmobileid != null">
+        authmobileid,
+      </if>
+      <if test="identityid != null">
+        identityid,
+      </if>
+      <if test="registerid != null">
+        registerid,
+      </if>
+      <if test="itemid != null">
+        itemid,
+      </if>
+      <if test="extends1 != null">
+        extends_1,
+      </if>
+      <if test="auditid != null">
+        auditid,
+      </if>
+      <if test="mobile != null">
+        mobile,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="infoid != null">
+        #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="authbankid != null">
+        #{authbankid,jdbcType=INTEGER},
+      </if>
+      <if test="authmobileid != null">
+        #{authmobileid,jdbcType=INTEGER},
+      </if>
+      <if test="identityid != null">
+        #{identityid,jdbcType=INTEGER},
+      </if>
+      <if test="registerid != null">
+        #{registerid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="extends1 != null">
+        #{extends1,jdbcType=VARCHAR},
+      </if>
+      <if test="auditid != null">
+        #{auditid,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        #{mobile,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="lzt.xiaodai.cn.entity.TProjectExample" resultType="java.lang.Long">
+    select count(*) from t_project
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_project
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.infoid != null">
+        infoid = #{record.infoid,jdbcType=INTEGER},
+      </if>
+      <if test="record.authbankid != null">
+        authbankid = #{record.authbankid,jdbcType=INTEGER},
+      </if>
+      <if test="record.authmobileid != null">
+        authmobileid = #{record.authmobileid,jdbcType=INTEGER},
+      </if>
+      <if test="record.identityid != null">
+        identityid = #{record.identityid,jdbcType=INTEGER},
+      </if>
+      <if test="record.registerid != null">
+        registerid = #{record.registerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.itemid != null">
+        itemid = #{record.itemid,jdbcType=INTEGER},
+      </if>
+      <if test="record.extends1 != null">
+        extends_1 = #{record.extends1,jdbcType=VARCHAR},
+      </if>
+      <if test="record.auditid != null">
+        auditid = #{record.auditid,jdbcType=INTEGER},
+      </if>
+      <if test="record.mobile != null">
+        mobile = #{record.mobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_project
+    set id = #{record.id,jdbcType=INTEGER},
+      infoid = #{record.infoid,jdbcType=INTEGER},
+      authbankid = #{record.authbankid,jdbcType=INTEGER},
+      authmobileid = #{record.authmobileid,jdbcType=INTEGER},
+      identityid = #{record.identityid,jdbcType=INTEGER},
+      registerid = #{record.registerid,jdbcType=INTEGER},
+      itemid = #{record.itemid,jdbcType=INTEGER},
+      extends_1 = #{record.extends1,jdbcType=VARCHAR},
+      auditid = #{record.auditid,jdbcType=INTEGER},
+      mobile = #{record.mobile,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="lzt.xiaodai.cn.entity.TProject">
+    update t_project
+    <set>
+      <if test="infoid != null">
+        infoid = #{infoid,jdbcType=INTEGER},
+      </if>
+      <if test="authbankid != null">
+        authbankid = #{authbankid,jdbcType=INTEGER},
+      </if>
+      <if test="authmobileid != null">
+        authmobileid = #{authmobileid,jdbcType=INTEGER},
+      </if>
+      <if test="identityid != null">
+        identityid = #{identityid,jdbcType=INTEGER},
+      </if>
+      <if test="registerid != null">
+        registerid = #{registerid,jdbcType=INTEGER},
+      </if>
+      <if test="itemid != null">
+        itemid = #{itemid,jdbcType=INTEGER},
+      </if>
+      <if test="extends1 != null">
+        extends_1 = #{extends1,jdbcType=VARCHAR},
+      </if>
+      <if test="auditid != null">
+        auditid = #{auditid,jdbcType=INTEGER},
+      </if>
+      <if test="mobile != null">
+        mobile = #{mobile,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="lzt.xiaodai.cn.entity.TProject">
+    update t_project
+    set infoid = #{infoid,jdbcType=INTEGER},
+      authbankid = #{authbankid,jdbcType=INTEGER},
+      authmobileid = #{authmobileid,jdbcType=INTEGER},
+      identityid = #{identityid,jdbcType=INTEGER},
+      registerid = #{registerid,jdbcType=INTEGER},
+      itemid = #{itemid,jdbcType=INTEGER},
+      extends_1 = #{extends1,jdbcType=VARCHAR},
+      auditid = #{auditid,jdbcType=INTEGER},
+      mobile = #{mobile,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
