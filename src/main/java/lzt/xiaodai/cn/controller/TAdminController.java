@@ -1,20 +1,22 @@
 package lzt.xiaodai.cn.controller;
 
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import lzt.xiaodai.cn.common.EasyUiDataGird;
+import lzt.xiaodai.cn.common.PageResult;
 import lzt.xiaodai.cn.entity.TAdmin;
 import lzt.xiaodai.cn.mapper.TAdminMapper;
 import lzt.xiaodai.cn.service.TAdminService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.util.List;
 
 
 /**
@@ -46,8 +48,24 @@ public class TAdminController {
         Page<TAdmin> page = new Page<>(current,pagesize);
         IPage<TAdmin> tAdminIPage = adminMapper.selectPage(page, null);
         return tAdminIPage;
+    }
+    @RequestMapping(path = "/users/login",method = RequestMethod.POST)
+    @ResponseBody
+    public PageResult<TAdmin> login(@RequestBody TAdmin admin){
 
+        TAdmin one = adminService.getOne(new QueryWrapper<>(admin));
+        if (one != null){
+           return PageResult.build().ok(one);
+        }else {
+            return PageResult.build().failed();
+        }
+    }
 
+    @RequestMapping(value = ("users/admins"),method = RequestMethod.GET)
+    @ResponseBody
+    public EasyUiDataGird<TAdmin> requestAdmins(){
+        List<TAdmin> list = adminService.list();
+        return new EasyUiDataGird<>(list,list.size());
     }
 
 }

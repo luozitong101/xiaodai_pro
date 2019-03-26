@@ -1,11 +1,7 @@
 package lzt.xiaodai.cn.tool;
 
-import com.p6spy.engine.logging.Category;
 import com.p6spy.engine.spy.appender.MessageFormattingStrategy;
-import com.p6spy.engine.spy.appender.StdoutLogger;
-import freemarker.template.utility.StringUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

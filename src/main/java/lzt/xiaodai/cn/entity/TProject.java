@@ -1,6 +1,7 @@
 package lzt.xiaodai.cn.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -54,7 +55,7 @@ public class TProject implements Serializable {
      * 关联借款项id
      */
     private Integer itemid;
-
+    @TableField("extends_1")
     private String extends1;
 
     /**
@@ -66,6 +67,14 @@ public class TProject implements Serializable {
      * 手机号
      */
     private String mobile;
+    /**
+     *证件信息
+     */
+    private Integer imageid;
+    /**
+     * 审核人id
+     */
+    private Integer adminid;
 
 
 }

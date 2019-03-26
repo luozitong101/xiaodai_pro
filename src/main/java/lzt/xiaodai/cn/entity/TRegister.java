@@ -22,7 +22,11 @@ import lombok.experimental.Accessors;
 public class TRegister implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    public TRegister(){}
+    public TRegister(String phone,String password){
+        this.phone = phone;
+        this.password = password;
+    }
     @TableId(value = "id", type = IdType.AUTO)
     private Integer id;
 
@@ -34,7 +38,7 @@ public class TRegister implements Serializable {
     /**
      * 密码
      */
-    private String passoword;
+    private String password;
 
     /**
      * 扩展字段

@@ -29,16 +29,19 @@ public class TImage implements Serializable {
     /**
      * 身份证正面照
      */
+    @TableField("front_url")
     private String frontUrl;
 
     /**
      * 身份证反面照
      */
+    @TableField("back_url")
     private String backUrl;
 
     /**
      * 全家合照
      */
+    @TableField("family_url")
     private String familyUrl;
     @TableField("extends_1")
     private String extends1;

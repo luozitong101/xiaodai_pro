@@ -27,14 +27,14 @@ public class TAudit implements Serializable {
     private Integer id;
 
     /**
-     * 0  审核中  1 确认银行卡 2身份认证 3 签约 4放款
+     * -1未提交审核   0  审核中  1 确认银行卡 2身份认证 3 签约 4放款
      */
     private Integer step;
 
     /**
      * 审核步骤描述
      */
-    private String desc;
+    private String description;
 
     /**
      * 审核人id
@@ -50,7 +50,7 @@ public class TAudit implements Serializable {
     @TableField("extends_2")
     private String extends2;
     @TableField("extends_3")
-    private String exnteds3;
+    private String extends3;
 
 
 }

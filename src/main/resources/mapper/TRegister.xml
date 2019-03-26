@@ -6,17 +6,17 @@
     <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TRegister">
         <id column="id" property="id" />
         <result column="phone" property="phone" />
-        <result column="passoword" property="passoword" />
-        <result column="extend_1" property="extend1" />
-        <result column="extend_2" property="extend2" />
-        <result column="extend_3" property="extend3" />
-        <result column="extend_4" property="extend4" />
-        <result column="extend_5" property="extend5" />
+        <result column="password" property="password" />
+        <result column="extends_1" property="extend1" />
+        <result column="extends_2" property="extend2" />
+        <result column="extends_3" property="extend3" />
+        <result column="extends_4" property="extend4" />
+        <result column="extends_5" property="extend5" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, phone, passoword, extend_1, extend_2, extend_3, extend_4, extend_5
+        id, phone, password, extends_1, extends_2, extends_3, extends_4, extends_5
     </sql>
 
 </mapper>

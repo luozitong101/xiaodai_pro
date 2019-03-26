@@ -45,6 +45,15 @@ public class PageResult<T> extends BaseResult {
         return this;
     }
 
+    public PageResult failed(String message){
+        if (message == null || message.length() <1){
+            this.message = "failed";
+        }else {
+            this.message = message;
+        }
+        return this;
+    }
+
     public T getRet() {
         return ret;
     }

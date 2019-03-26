@@ -8,11 +8,15 @@ import org.junit.runner.RunWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.util.FileCopyUtils;
 
 import javax.annotation.Resource;
+import java.io.File;
+import java.io.IOException;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -45,6 +49,19 @@ public class XiaodaiProApplicationTests {
 
         List<Map<String, Object>> maps = adminService.listMaps();
         logger.info(maps.toString());
+
+
+    }
+    @Value("${web.upload-path}")
+    private String path;
+    @Test
+    public void testuplaod(){
+        File file = new File("F:\\luoyong_item\\font-web\\img\\logo.png");
+        try {
+            FileCopyUtils.copy(file,new File(path+"1.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
 
     }

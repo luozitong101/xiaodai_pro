@@ -1,6 +1,7 @@
 package lzt.xiaodai.cn.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
 import lombok.Data;
@@ -93,9 +94,9 @@ public class TInfo implements Serializable {
      * 常驻地址
      */
     private String homeaddress;
-
+    @TableField("extends_1")
     private String extends1;
-
+    @TableField("extends_2")
     private String extends2;
 
     /**

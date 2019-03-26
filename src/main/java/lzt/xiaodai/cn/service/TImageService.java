@@ -3,6 +3,7 @@ package lzt.xiaodai.cn.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import lzt.xiaodai.cn.entity.TImage;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  * <p>
@@ -14,4 +15,5 @@ import lzt.xiaodai.cn.entity.TImage;
  */
 public interface TImageService extends IService<TImage> {
 
+    String upload(MultipartFile file,String mobile,String flag);
 }

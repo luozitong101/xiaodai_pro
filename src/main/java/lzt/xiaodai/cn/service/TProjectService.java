@@ -1,8 +1,13 @@
 package lzt.xiaodai.cn.service;
 
 
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import lzt.xiaodai.cn.common.TProjectVo;
 import lzt.xiaodai.cn.entity.TProject;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,5 +18,12 @@ import lzt.xiaodai.cn.entity.TProject;
  * @since 2019-03-21
  */
 public interface TProjectService extends IService<TProject> {
+    /**
+     *
+     * @return
+     */
+     List<TProjectVo> queryProject(long page, long rows, BaseMapper<TProject> mapper, Wrapper<TProject> wrapper);
 
+
+     List<TProjectVo> gettProjectVos(List<TProject> list);
 }

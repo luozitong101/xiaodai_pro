@@ -6,17 +6,17 @@
     <resultMap id="BaseResultMap" type="lzt.xiaodai.cn.entity.TAudit">
         <id column="id" property="id" />
         <result column="step" property="step" />
-        <result column="desc" property="desc" />
+        <result column="description" property="description" />
         <result column="adminid" property="adminid" />
         <result column="projectid" property="projectid" />
         <result column="extends_1" property="extends1" />
         <result column="extends_2" property="extends2" />
-        <result column="exnteds_3" property="exnteds3" />
+        <result column="extends_3" property="extends3" />
     </resultMap>
 
     <!-- 通用查询结果列 -->
     <sql id="Base_Column_List">
-        id, step, desc, adminid, projectid, extends_1, extends_2, exnteds_3
+        id, step, description, adminid, projectid, extends_1, extends_2, exnteds_3
     </sql>
 
 </mapper>
