@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -31,9 +32,16 @@ public class LogAspect {
        HttpServletRequest request = attributes.getRequest();
 
        Object[] args = joinPoint.getArgs();
+       Object[] args2 = new Object[args.length];
        MethodSignature signature = (MethodSignature)joinPoint.getSignature();
        Method method = signature.getMethod();
-       logger.info("请求入数:{} path:{}, {}.{} ",JacksonUtil.BeanToJson(args),request.getRequestURL().toString(),method.getDeclaringClass().getName(),method.getName());
+       int i= 0;
+       for (Object o : args){
+          if (!(o instanceof MultipartFile)){
+             args2[i++] = o;
+          }
+       }
+       logger.info("请求入数:{} path:{}, {}.{} ",JacksonUtil.BeanToJson(args2),request.getRequestURL().toString(),method.getDeclaringClass().getName(),method.getName());
 
    }
    @AfterReturning(pointcut = "webLog()",returning = "ret")

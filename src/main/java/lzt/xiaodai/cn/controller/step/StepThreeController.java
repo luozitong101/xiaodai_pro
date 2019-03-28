@@ -38,13 +38,14 @@ public class StepThreeController {
         List<TProject> list = tProjectService.list(condition);
         for (TProject project : list){
             project.setInfoid(one.getId());
+            project.setPhaseid(3);
             tProjectService.updateById(project);
         }
-        TPhase tPhase = new TPhase();
-        tPhase.setMobile(mobile);
-        tPhase.setPhasedesc("个人家庭信息保存完成");
-        tPhase.setPhase(3);
-        tPhaseService.save(tPhase);
+//        TPhase tPhase = new TPhase();
+//        tPhase.setMobile(mobile);
+//        tPhase.setPhasedesc("个人家庭信息保存完成");
+//        tPhase.setPhase(3);
+//        tPhaseService.save(tPhase);
         return ResultInfo.ok();
     }
 

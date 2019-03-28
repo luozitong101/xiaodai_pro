@@ -76,5 +76,10 @@ public class TProject implements Serializable {
      */
     private Integer adminid;
 
+    /**
+     * 当前借款状态
+     */
+    private Integer phaseid;
+
 
 }

@@ -60,13 +60,9 @@ public class StepOneController {
                 tproject.setItemid(one.getId());
                 tproject.setAuthmobileid(one1.getId());
                 tproject.setMobile(one1.getPhone());
+                tproject.setPhaseid(1);
                 tProjectService.save(tproject);
-                //保存当前用户贷款进度
-                TPhase phase = new TPhase();
-                phase.setMobile(one1.getPhone());
-                phase.setPhase(1);
-                phase.setPhasedesc("贷款项目申请,确认手机运营商完成");
-                tPhaseService.saveOrUpdate(phase);
+
             }
         } catch (Exception e) {
             e.printStackTrace();

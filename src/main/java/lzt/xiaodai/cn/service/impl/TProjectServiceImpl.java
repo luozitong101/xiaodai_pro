@@ -2,15 +2,13 @@ package lzt.xiaodai.cn.service.impl;
 
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import lzt.xiaodai.cn.common.EasyUiDataGird;
 import lzt.xiaodai.cn.common.TProjectVo;
-import lzt.xiaodai.cn.entity.TAudit;
-import lzt.xiaodai.cn.entity.TAuthMobile;
-import lzt.xiaodai.cn.entity.TInfo;
-import lzt.xiaodai.cn.entity.TProject;
+import lzt.xiaodai.cn.entity.*;
 import lzt.xiaodai.cn.mapper.TProjectMapper;
 import lzt.xiaodai.cn.service.*;
 import lzt.xiaodai.cn.tool.PageHelper;
@@ -46,6 +44,8 @@ public class TProjectServiceImpl extends ServiceImpl<TProjectMapper, TProject> i
     TAdminService tAdminService;
     @Autowired
     TImageService tImageService;
+    @Autowired
+    TPhaseService tPhaseService;
 
     @Override
     public List<TProjectVo> queryProject(long page, long rows, BaseMapper<TProject> mapper, Wrapper<TProject> wrapper) {
@@ -85,6 +85,10 @@ public class TProjectServiceImpl extends ServiceImpl<TProjectMapper, TProject> i
             }
             if (tProject.getImageid() != null){
                 vo.setImage(tImageService.getById(tProject.getImageid()));
+            }if (tProject.getPhaseid() != null){
+                QueryWrapper<TPhase> q = new QueryWrapper<>();
+                q.eq("phase",tProject.getPhaseid());
+                vo.setTPhase(tPhaseService.getOne(q));
             }
             vo.setMobile(tProject.getMobile());
             vos.add(vo);

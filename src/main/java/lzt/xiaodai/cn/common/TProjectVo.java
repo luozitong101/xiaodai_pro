@@ -55,5 +55,7 @@ public class TProjectVo implements Serializable {
      */
     private String mobile;
 
+    private TPhase tPhase;
+
 
 }

@@ -41,14 +41,14 @@ public class StepTwoController {
             List<TProject> list = tProjectService.list(wrapper);
             for (TProject t : list){
                 t.setIdentityid(identity.getId());
+                t.setPhaseid(2);
                 tProjectService.updateById(t);
-
             }
-            TPhase tPhase = new TPhase();
-            tPhase.setMobile(mobile);
-            tPhase.setPhasedesc("身份证信息和真实姓名上传完成");
-            tPhase.setPhase(2);
-            tPhaseService.save(tPhase);
+//            TPhase tPhase = new TPhase();
+//            tPhase.setMobile(mobile);
+//            tPhase.setPhasedesc("身份证信息和真实姓名上传完成");
+//            tPhase.setPhase(2);
+//            tPhaseService.save(tPhase);
         }
         return ResultInfo.ok();
     }
