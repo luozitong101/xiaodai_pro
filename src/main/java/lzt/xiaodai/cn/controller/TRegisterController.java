@@ -45,6 +45,7 @@ public class TRegisterController {
         if (one != null){
             QueryWrapper<TProject> cnd = new QueryWrapper<>();
             cnd.eq("mobile",mobile);
+            cnd.orderByDesc("id");
             List<TProject> list = tProjectService.list(cnd);
             List<TProjectVo> tProjectVos = tProjectService.gettProjectVos(list);
             resultInfo.setCode(200);

@@ -34,6 +34,6 @@ public class StepFourController {
             tProject.setPhaseid(4);
             tProjectService.updateById(tProject);
         }
-        return ResultInfo.ok();
+        return ResultInfo.ok(tProjectService.gettProjectVos(list));
     }
 }

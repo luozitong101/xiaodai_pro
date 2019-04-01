@@ -1,12 +1,17 @@
 package lzt.xiaodai.cn;
 
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
+import lzt.xiaodai.cn.common.filter.RestApiFilter;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author luoyong
@@ -30,5 +35,17 @@ public class AppProApplication {
         return new PaginationInterceptor();
     }
 
+
+//    @Bean
+//    public FilterRegistrationBean apiFilter(){
+//        FilterRegistrationBean filterRegistrationBean = new FilterRegistrationBean();
+//        RestApiFilter apiFilter = new RestApiFilter();
+//        filterRegistrationBean.setFilter(apiFilter);
+//        List<String> urls =  new ArrayList<>();
+//        urls.add("/*");
+//        filterRegistrationBean.setUrlPatterns(urls);
+//        return filterRegistrationBean;
+//
+//    }
 
 }

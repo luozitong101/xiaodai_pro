@@ -47,6 +47,9 @@ public class TProjectServiceImpl extends ServiceImpl<TProjectMapper, TProject> i
     @Autowired
     TPhaseService tPhaseService;
 
+    @Autowired
+    TContactService contactService;
+
     @Override
     public List<TProjectVo> queryProject(long page, long rows, BaseMapper<TProject> mapper, Wrapper<TProject> wrapper) {
         IPage<TProject> page1 = PageHelper.getPage(page, rows, mapper, wrapper);
@@ -76,6 +79,12 @@ public class TProjectServiceImpl extends ServiceImpl<TProjectMapper, TProject> i
             }
             if (tProject.getInfoid() != null){
                 vo.setInfo(tInfoService.getById(tProject.getInfoid()));
+                if(vo.getInfo() !=null){
+                    QueryWrapper<TContact> q = new QueryWrapper<>();
+                    q.eq("infoid",vo.getInfo().getId());
+                    List<TContact> list1 = contactService.list(q);
+                    vo.getInfo().setContacts(list1);
+                }
             }
             if (tProject.getItemid() != null){
                 vo.setItem(tItemService.getById(tProject.getItemid()));

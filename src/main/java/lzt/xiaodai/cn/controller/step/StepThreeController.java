@@ -2,9 +2,10 @@ package lzt.xiaodai.cn.controller.step;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lzt.xiaodai.cn.common.ResultInfo;
+import lzt.xiaodai.cn.entity.TContact;
 import lzt.xiaodai.cn.entity.TInfo;
-import lzt.xiaodai.cn.entity.TPhase;
 import lzt.xiaodai.cn.entity.TProject;
+import lzt.xiaodai.cn.service.TContactService;
 import lzt.xiaodai.cn.service.TInfoService;
 import lzt.xiaodai.cn.service.TPhaseService;
 import lzt.xiaodai.cn.service.TProjectService;
@@ -29,9 +30,16 @@ public class StepThreeController {
     TProjectService tProjectService;
     @Autowired
     TPhaseService tPhaseService;
+    @Autowired
+    TContactService tContactService;
     @PostMapping("/put/step3")
     public ResultInfo handlerStep3(@RequestParam String mobile, @RequestBody TInfo tInfo){
         tInfoService.save(tInfo);
+        List<TContact> contacts = tInfo.getContacts();
+        for (TContact contact : contacts) {
+            contact.setInfoid(tInfo.getId());
+        }
+        tContactService.saveBatch(contacts);
         TInfo one = tInfoService.getOne(new QueryWrapper<>(tInfo));
         QueryWrapper<TProject> condition = new QueryWrapper<>();
         condition.eq("mobile",mobile);
@@ -41,12 +49,7 @@ public class StepThreeController {
             project.setPhaseid(3);
             tProjectService.updateById(project);
         }
-//        TPhase tPhase = new TPhase();
-//        tPhase.setMobile(mobile);
-//        tPhase.setPhasedesc("个人家庭信息保存完成");
-//        tPhase.setPhase(3);
-//        tPhaseService.save(tPhase);
-        return ResultInfo.ok();
+        return ResultInfo.ok(tProjectService.gettProjectVos(list));
     }
 
 }

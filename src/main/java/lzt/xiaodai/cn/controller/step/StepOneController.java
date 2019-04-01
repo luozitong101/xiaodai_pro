@@ -2,6 +2,7 @@ package lzt.xiaodai.cn.controller.step;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lzt.xiaodai.cn.common.ResultInfo;
+import lzt.xiaodai.cn.common.TProjectVo;
 import lzt.xiaodai.cn.entity.TAuthMobile;
 import lzt.xiaodai.cn.entity.TItem;
 import lzt.xiaodai.cn.entity.TPhase;
@@ -18,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author luoyong
@@ -43,6 +46,7 @@ public class StepOneController {
         //关联tproject 字段
         // moneytype 0 500 1 1000 2 2000 3 3000
         //daytype 0 7 1 14
+        List<TProjectVo> tProjectVos = null;
         try {
             TItem item = sendData.getItem();
             Date refund = new Date();
@@ -53,6 +57,7 @@ public class StepOneController {
             item.setExtends1(DateUtilFull.parseDateToStr(hkdate,DateUtilFull.DATE_FORMAT_YYYY_MM_DD));
             boolean save = itemService.save(item);
             boolean flag = authMobileService.save(sendData.getAuthMobile());
+
             if (save && flag){
                 TItem one = itemService.getOne(new QueryWrapper<>(sendData.getItem()));
                 TAuthMobile one1 = authMobileService.getOne(new QueryWrapper<>(sendData.getAuthMobile()));
@@ -62,14 +67,16 @@ public class StepOneController {
                 tproject.setMobile(one1.getPhone());
                 tproject.setPhaseid(1);
                 tProjectService.save(tproject);
+                List<TProject> tps = new ArrayList<>();
+                tps.add(tproject);
+                tProjectVos = tProjectService.gettProjectVos(tps);
 
             }
         } catch (Exception e) {
             e.printStackTrace();
             return ResultInfo.failure();
         }
-
-        return  ResultInfo.ok();
+        return  ResultInfo.ok(tProjectVos);
     }
 
 

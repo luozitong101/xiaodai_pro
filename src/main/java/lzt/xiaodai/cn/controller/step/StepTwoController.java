@@ -2,6 +2,7 @@ package lzt.xiaodai.cn.controller.step;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lzt.xiaodai.cn.common.ResultInfo;
+import lzt.xiaodai.cn.common.TProjectVo;
 import lzt.xiaodai.cn.entity.TIdentity;
 import lzt.xiaodai.cn.entity.TPhase;
 import lzt.xiaodai.cn.entity.TProject;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -34,6 +36,7 @@ public class StepTwoController {
     public ResultInfo step2(@RequestBody TIdentity identity, @RequestParam String mobile){
         QueryWrapper<TIdentity> condition = new QueryWrapper<>(identity);
         TIdentity one = identityService.getOne(condition);
+        List<TProjectVo> vos = null;
         if (one == null){
             identityService.save(identity);
             QueryWrapper<TProject> wrapper = new QueryWrapper<>();
@@ -43,13 +46,10 @@ public class StepTwoController {
                 t.setIdentityid(identity.getId());
                 t.setPhaseid(2);
                 tProjectService.updateById(t);
+
             }
-//            TPhase tPhase = new TPhase();
-//            tPhase.setMobile(mobile);
-//            tPhase.setPhasedesc("身份证信息和真实姓名上传完成");
-//            tPhase.setPhase(2);
-//            tPhaseService.save(tPhase);
+             vos = tProjectService.gettProjectVos(list);
         }
-        return ResultInfo.ok();
+        return ResultInfo.ok(vos);
     }
 }
