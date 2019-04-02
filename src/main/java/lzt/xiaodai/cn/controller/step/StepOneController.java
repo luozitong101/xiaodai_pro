@@ -5,7 +5,6 @@ import lzt.xiaodai.cn.common.ResultInfo;
 import lzt.xiaodai.cn.common.TProjectVo;
 import lzt.xiaodai.cn.entity.TAuthMobile;
 import lzt.xiaodai.cn.entity.TItem;
-import lzt.xiaodai.cn.entity.TPhase;
 import lzt.xiaodai.cn.entity.TProject;
 import lzt.xiaodai.cn.entity.receive.ItemAndAuthMobile;
 import lzt.xiaodai.cn.service.TAuthMobileService;
@@ -85,11 +84,11 @@ public class StepOneController {
       Integer finalday = item.getDay() == 0 ? 7 : 14;
       Integer money =0;
       if (item.getMoney() == 0){
-          money = 500;
-      }else if(item.getMoney() == 1){
           money = 1000;
-      }else if (item.getMoney() == 2){
+      }else if(item.getMoney() == 1){
           money = 2000;
+      }else if (item.getMoney() == 2){
+          money = 3000;
       }
         item.setMoney(money);
         item.setDay(finalday);

@@ -5,10 +5,14 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import lzt.xiaodai.cn.common.EasyUiDataGird;
 import lzt.xiaodai.cn.common.ResultInfo;
 import lzt.xiaodai.cn.common.TProjectVo;
+import lzt.xiaodai.cn.common.jwt.JwtPlayHoler;
+import lzt.xiaodai.cn.common.jwt.annotation.PassToken;
+import lzt.xiaodai.cn.common.jwt.annotation.UserLoginToken;
 import lzt.xiaodai.cn.entity.TProject;
 import lzt.xiaodai.cn.entity.TRegister;
 import lzt.xiaodai.cn.service.TProjectService;
 import lzt.xiaodai.cn.service.TRegisterService;
+import lzt.xiaodai.cn.service.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,6 +38,9 @@ public class TRegisterController {
     @Autowired
     TProjectService tProjectService;
 
+    @Autowired
+    TokenService tokenService;
+
     @GetMapping("/login")
     @ResponseBody
     public ResultInfo login(String mobile,String password){
@@ -48,7 +55,12 @@ public class TRegisterController {
             cnd.orderByDesc("id");
             List<TProject> list = tProjectService.list(cnd);
             List<TProjectVo> tProjectVos = tProjectService.gettProjectVos(list);
+            JwtPlayHoler holer = new JwtPlayHoler();
+            holer.setId(one.getId());
+            holer.setPassword(one.getPassword());
+            String token = tokenService.getToken(holer);
             resultInfo.setCode(200);
+            resultInfo.setToken(token);
             resultInfo.setMessage("success");
             resultInfo.setRet(tProjectVos);
         }else {
@@ -80,5 +92,17 @@ public class TRegisterController {
             resultInfo.setMessage("该用户已经注册");
         }
         return resultInfo;
+    }
+    @GetMapping("/msg")
+    @UserLoginToken(required = true)
+    @ResponseBody
+    public String getMessage(){
+        return "test info";
+    }
+    @GetMapping("/pass")
+    @PassToken
+    @ResponseBody
+    public String getInfo(){
+        return "pass token";
     }
 }

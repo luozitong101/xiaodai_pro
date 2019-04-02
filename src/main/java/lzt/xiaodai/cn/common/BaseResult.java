@@ -13,6 +13,16 @@ public class BaseResult implements Serializable {
 
     protected String message;
 
+    protected String token;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
     public BaseResult(){}
 
     public BaseResult(int code, String message) {
