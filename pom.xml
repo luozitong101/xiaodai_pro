@@ -10,7 +10,7 @@
     </parent>
     <groupId>lzt.xiaodai.cn</groupId>
     <artifactId>xiaodai_pro</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.realse</version>
     <name>xiaodai_pro</name>
     <description>Demo project for Spring Boot</description>
 
@@ -51,11 +51,11 @@
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus-generator -->
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-generator</artifactId>
-            <version>3.0.7.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus-generator</artifactId>-->
+            <!--<version>3.0.7.1</version>-->
+        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/com.baomidou/mybatis-plus -->
         <dependency>
             <groupId>com.baomidou</groupId>
@@ -97,11 +97,11 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>com.baomidou</groupId>
-            <artifactId>mybatis-plus-core</artifactId>
-            <version>3.0.7.1</version>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.baomidou</groupId>-->
+            <!--<artifactId>mybatis-plus-core</artifactId>-->
+            <!--<version>3.0.7.1</version>-->
+        <!--</dependency>-->
         <!--<dependency>-->
             <!--<groupId>org.aspectj</groupId>-->
             <!--<artifactId>aspectjrt</artifactId>-->
@@ -180,6 +180,27 @@
                         <!--src/main/resources/mybatis-generator.xml</configurationFile>-->
                 <!--</configuration>-->
             <!--</plugin>-->
+
+            <!--<plugin>-->
+                <!--<groupId>org.apache.maven.plugins</groupId>-->
+                <!--<artifactId>maven-jar-plugin</artifactId>-->
+
+                <!--<configuration>-->
+                    <!--<archive>-->
+                        <!--<manifest>-->
+                            <!--<mainClass>lzt.xiaodai.cn.AppProApplication</mainClass>-->
+                        <!--</manifest>-->
+                    <!--</archive>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
+
+
+
         </plugins>
     </build>
 
