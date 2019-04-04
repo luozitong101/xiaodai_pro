@@ -31,7 +31,7 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
     TAdminService tAdminService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        String token = request.getHeader("token");
+        String token = request.getParameter("token");
         if (!(handler instanceof HandlerMethod)){
             return  true;
         }
@@ -48,42 +48,48 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 
             UserLoginToken userLoginToken = method.getAnnotation(UserLoginToken.class);
             if (userLoginToken.required()){
-                //执行认证
-                if (token == null){
-                    throw  new RuntimeException("无token,请重新登录");
-                }
-                String s = null;
-                try {
-                    s = JWT.decode(token).getAudience().get(0);
-                } catch (JWTDecodeException e) {
-                    throw new RuntimeException("401");
-                }
-                if (s == null){
-                    return  false;
-                }
-                // {id:1,mobile:"15618759969",username:"luoyong"}
-//                Map map = JacksonUtil.JsonToBean(s, Map.class);
-                TRegister register = tRegisterService.getById(Integer.parseInt(s));
-                TAdmin admin = tAdminService.getById(Integer.parseInt(s));
-                if (register == null && admin == null){
-                    throw new RuntimeException("用户不存在");
-                }
-                String pwd = "";
-                if (register != null){
-                    pwd = register.getPassword();
-                }
-                if (admin != null){
-                    pwd = admin.getPassword();
-                }
-                // 验证 token
-                JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(pwd)).build();
-                try {
-                    jwtVerifier.verify(token);
-                } catch (JWTVerificationException e) {
-                    throw new RuntimeException("401");
-                }
-                return true;
+               return interceptor(token);
             }
+        }
+        if (request.getRequestURL().toString().contains("login")){
+            return true;
+        }
+        return interceptor(token);
+    }
+
+    public boolean interceptor( String token){
+        //执行认证
+        if (token == null){
+            throw  new RuntimeException("无token,请重新登录");
+        }
+        String s = null;
+        try {
+            s = JWT.decode(token).getAudience().get(0);
+        } catch (JWTDecodeException e) {
+            throw new RuntimeException("401");
+        }
+        if (s == null){
+            return  false;
+        }
+
+        TRegister register = tRegisterService.getById(Integer.parseInt(s));
+        TAdmin admin = tAdminService.getById(Integer.parseInt(s));
+        if (register == null && admin == null){
+            throw new RuntimeException("用户不存在");
+        }
+        String pwd = "";
+        if (register != null){
+            pwd = register.getPassword();
+        }
+        if (admin != null){
+            pwd = admin.getPassword();
+        }
+        // 验证 token
+        JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(pwd)).build();
+        try {
+            jwtVerifier.verify(token);
+        } catch (JWTVerificationException e) {
+            throw new RuntimeException("401");
         }
         return true;
     }

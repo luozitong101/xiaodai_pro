@@ -11,6 +11,7 @@ import lzt.xiaodai.cn.service.TAuthMobileService;
 import lzt.xiaodai.cn.service.TItemService;
 import lzt.xiaodai.cn.service.TPhaseService;
 import lzt.xiaodai.cn.service.TProjectService;
+import lzt.xiaodai.cn.tool.CommonUtil;
 import lzt.xiaodai.cn.tool.DateUtilFull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,7 +51,7 @@ public class StepOneController {
             TItem item = sendData.getItem();
             Date refund = new Date();
             item.setRefund(LocalDate.now());
-            item = parseItem(item);
+            item = CommonUtil.parseItem(item);
             Date hkdate = DateUtilFull.addDate(refund, 0, 0, item.getDay(), 0, 0, 0, 0);
             //设置还款日期
             item.setExtends1(DateUtilFull.parseDateToStr(hkdate,DateUtilFull.DATE_FORMAT_YYYY_MM_DD));
@@ -80,18 +81,5 @@ public class StepOneController {
 
 
 
-    public TItem parseItem(TItem item){
-      Integer finalday = item.getDay() == 0 ? 7 : 14;
-      Integer money =0;
-      if (item.getMoney() == 0){
-          money = 1000;
-      }else if(item.getMoney() == 1){
-          money = 2000;
-      }else if (item.getMoney() == 2){
-          money = 3000;
-      }
-        item.setMoney(money);
-        item.setDay(finalday);
-      return item;
-    }
+
 }

@@ -1,17 +1,16 @@
 #开发配置
 spring:
   datasource:
-    #url: jdbc:mysql://localhost:3306/xiaodai_pro?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
-    url: jdbc:p6spy:mysql://localhost:3306/xiaodai_ceshi?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    url: jdbc:mysql://47.99.64.175:3306/xiaodai_pro?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
-    password: yanhui
-    driver-class-name: com.p6spy.engine.spy.P6SpyDriver
+    password: B1C9e5ff74c0
+    driver-class-name:  com.mysql.jdbc.Driver
   mvc:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 web:
-  upload-path: F:/luoy/studypj2/card/
+  upload-path: /root/uploadcard
 mybatis-plus:
   typeAliasesPackage: lzt.xiaodai.cn.entity
   mapperLocations: classpath:mapper/*.xml

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.constraints.Null;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
@@ -80,6 +81,10 @@ public class StepFiveController {
         TProject one = tProjectService.getOne(q);
         TProject tProject = new TProject();
         tProject.setPhaseid(7);
+        //更新放款时间
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+        String date = sdf.format(new Date());
+        tProject.setExtends1(date);
         tProjectService.update(tProject,u);
 
        //更新借款和还款日期
