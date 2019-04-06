@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import java.io.Serializable;
+import java.util.Date;
+
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.experimental.Accessors;
@@ -80,6 +82,12 @@ public class TProject implements Serializable {
      * 当前借款状态
      */
     private Integer phaseid;
+
+    /**
+     * 还款日期
+     */
+    @TableField("hkDate")
+    private Date hkDate;
 
 
 }

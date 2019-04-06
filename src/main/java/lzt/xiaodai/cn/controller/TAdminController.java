@@ -7,6 +7,7 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import lzt.xiaodai.cn.common.EasyUiDataGird;
 import lzt.xiaodai.cn.common.PageResult;
 import lzt.xiaodai.cn.common.jwt.JwtPlayHoler;
+import lzt.xiaodai.cn.common.jwt.annotation.PassToken;
 import lzt.xiaodai.cn.common.jwt.annotation.UserLoginToken;
 import lzt.xiaodai.cn.entity.TAdmin;
 import lzt.xiaodai.cn.mapper.TAdminMapper;
@@ -31,7 +32,7 @@ import java.util.List;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tAdmin")
+@RequestMapping("/api/tAdmin")
 public class TAdminController {
     @Autowired
     TAdminService adminService;
@@ -53,6 +54,7 @@ public class TAdminController {
         IPage<TAdmin> tAdminIPage = adminMapper.selectPage(page, null);
         return tAdminIPage;
     }
+    @PassToken
     @RequestMapping(path = "/users/login",method = RequestMethod.POST)
     @ResponseBody
     public PageResult<TAdmin> login(@RequestBody TAdmin admin){

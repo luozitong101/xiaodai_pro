@@ -25,7 +25,7 @@ import java.util.List;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tProject")
+@RequestMapping("/api/tProject")
 public class TProjectController {
 
     @Autowired

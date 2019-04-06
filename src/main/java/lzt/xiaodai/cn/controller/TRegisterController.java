@@ -29,7 +29,7 @@ import java.util.List;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tRegister")
+@RequestMapping("/api/tRegister")
 public class TRegisterController {
 
     @Autowired
@@ -40,7 +40,7 @@ public class TRegisterController {
 
     @Autowired
     TokenService tokenService;
-
+    @PassToken
     @GetMapping("/login")
     @ResponseBody
     public ResultInfo login(String mobile,String password){
@@ -70,6 +70,7 @@ public class TRegisterController {
 
         return resultInfo;
     }
+    @PassToken
     @PostMapping("/register")
     @ResponseBody
     public ResultInfo register(@RequestBody TRegister tRegister){

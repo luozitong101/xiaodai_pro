@@ -11,10 +11,7 @@ import lzt.xiaodai.cn.service.TItemService;
 import lzt.xiaodai.cn.service.TProjectService;
 import lzt.xiaodai.cn.tool.DateUtilFull;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Null;
 import java.text.SimpleDateFormat;
@@ -32,6 +29,7 @@ import java.util.List;
  */
 
 @RestController
+@RequestMapping("/api")
 public class StepFiveController {
     @Autowired
     TProjectService tProjectService;
@@ -65,42 +63,53 @@ public class StepFiveController {
 
     /**
      * 确认放款 更新借款日期和还款日期
+     *
+     * 确认收款 更新收款时间
      * @param mobile
      * @param itemid
+     * @param type 0 确认放款 1 确认收款
      * @return
      */
-    @GetMapping("/update/step")
-    public ResultInfo updateStep(String mobile,Integer itemid){
-        UpdateWrapper<TProject> u = new UpdateWrapper<>();
-        QueryWrapper<TProject> q = new QueryWrapper<>();
-        q.eq("itemid",itemid);
-        q.eq("mobile",mobile);
+   @RequestMapping("/update/step/{type}")
+    public ResultInfo updateStep(@PathVariable Integer type, String mobile, Integer itemid){
+       List<TProjectVo> tProjectVos = null;
+       UpdateWrapper<TProject> u = new UpdateWrapper<>();
+       QueryWrapper<TProject> q = new QueryWrapper<>();
+       q.eq("itemid",itemid);
+       q.eq("mobile",mobile);
 
-        u.eq("itemid",itemid);
-        u.eq("mobile",mobile);
-        TProject one = tProjectService.getOne(q);
-        TProject tProject = new TProject();
-        tProject.setPhaseid(7);
-        //更新放款时间
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
-        String date = sdf.format(new Date());
-        tProject.setExtends1(date);
-        tProjectService.update(tProject,u);
+       u.eq("itemid",itemid);
+       u.eq("mobile",mobile);
+       TProject one = tProjectService.getOne(q);
+       TProject tProject = new TProject();
+       if(type  == 0){
+           tProject.setPhaseid(7);
+           //更新放款时间
+           SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+           String date = sdf.format(new Date());
+           tProject.setExtends1(date);
+           tProjectService.update(tProject,u);
+           //更新借款和还款日期
+           List<TProject> list = new ArrayList<>();
+           list.add(one);
+           tProjectVos = tProjectService.gettProjectVos(list);
+           if (tProjectVos != null && tProjectVos.size() > 0){
+               TProjectVo vo = tProjectVos.get(0);
+               TItem item = vo.getItem();
+               item.setRefund(LocalDate.now());
+               Date hkdate = DateUtilFull.addDate(new Date(), 0, 0, item.getDay(), 0, 0, 0, 0);
+               item.setExtends1(DateUtilFull.parseDateToStr(hkdate,DateUtilFull.DATE_FORMAT_YYYY_MM_DD));
+               UpdateWrapper<TItem> up = new UpdateWrapper<>();
+               up.eq("id",item.getId());
+               itemService.update(item,up);
+           }
+       }else if(type == 1){
+           tProject.setPhaseid(8);
+           tProject.setHkDate(new Date());
+           tProjectService.update(tProject,u);
 
-       //更新借款和还款日期
-        List<TProject> list = new ArrayList<>();
-        list.add(one);
-        List<TProjectVo> tProjectVos = tProjectService.gettProjectVos(list);
-        if (tProjectVos != null && tProjectVos.size() > 0){
-            TProjectVo vo = tProjectVos.get(0);
-            TItem item = vo.getItem();
-            item.setRefund(LocalDate.now());
-            Date hkdate = DateUtilFull.addDate(new Date(), 0, 0, item.getDay(), 0, 0, 0, 0);
-            item.setExtends1(DateUtilFull.parseDateToStr(hkdate,DateUtilFull.DATE_FORMAT_YYYY_MM_DD));
-            UpdateWrapper<TItem> up = new UpdateWrapper<>();
-            up.eq("id",item.getId());
-            itemService.update(item,up);
-        }
+       }
+
         return ResultInfo.ok(tProjectVos);
     }
 

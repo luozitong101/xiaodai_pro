@@ -10,7 +10,7 @@ spring:
   resources:
     static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/,file:${web.upload-path}
 web:
-  upload-path: /root/uploadcard
+  upload-path: /root/uploadcard/
 mybatis-plus:
   typeAliasesPackage: lzt.xiaodai.cn.entity
   mapperLocations: classpath:mapper/*.xml

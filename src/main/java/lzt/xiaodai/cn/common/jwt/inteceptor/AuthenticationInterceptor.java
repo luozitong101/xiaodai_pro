@@ -11,6 +11,8 @@ import lzt.xiaodai.cn.entity.TAdmin;
 import lzt.xiaodai.cn.entity.TRegister;
 import lzt.xiaodai.cn.service.TAdminService;
 import lzt.xiaodai.cn.service.TRegisterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,12 +27,14 @@ import java.lang.reflect.Method;
  * @Description: jwt 认证拦截
  */
 public class AuthenticationInterceptor implements HandlerInterceptor {
+    private static final Logger logger = LoggerFactory.getLogger(AuthenticationInterceptor.class);
     @Autowired
     TRegisterService tRegisterService;
     @Autowired
     TAdminService tAdminService;
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
+        logger.info("request url:{}",request.getRequestURL().toString());
         String token = request.getParameter("token");
         if (!(handler instanceof HandlerMethod)){
             return  true;

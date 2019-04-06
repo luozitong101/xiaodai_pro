@@ -43,4 +43,4 @@ mybatis-plus:
 
       #配置JdbcTypeForNull
 server:
-  port: 8090
+  port: 80

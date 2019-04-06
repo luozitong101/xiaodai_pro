@@ -27,7 +27,7 @@ import org.springframework.web.multipart.MultipartFile;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tImage")
+@RequestMapping("/api/tImage")
 public class TImageController {
 
     @Autowired

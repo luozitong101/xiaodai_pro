@@ -10,10 +10,7 @@ import lzt.xiaodai.cn.service.TInfoService;
 import lzt.xiaodai.cn.service.TPhaseService;
 import lzt.xiaodai.cn.service.TProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +20,7 @@ import java.util.List;
  * @Description:
  */
 @RestController
+@RequestMapping("/api")
 public class StepThreeController {
     @Autowired
     TInfoService tInfoService;

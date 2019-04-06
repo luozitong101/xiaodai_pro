@@ -30,7 +30,7 @@ public class FileUpload {
         FileOutputStream fos = null;
         try {
             input = file.getInputStream();
-            fos = new FileOutputStream(path + filename);
+            fos = new FileOutputStream(path + File.separator+filename);
             IOUtils.copy(input, fos);
         } catch (Exception e) {
             e.printStackTrace();
@@ -39,7 +39,7 @@ public class FileUpload {
             IOUtils.closeQuietly(input);
             IOUtils.closeQuietly(fos);
         }
-        return "http://localhost/"+filename;
+        return "http://47.99.64.175/"+filename;
     }
 
 

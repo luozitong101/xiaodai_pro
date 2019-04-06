@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tAudit")
+@RequestMapping("/api/tAudit")
 public class TAuditController {
 
 }

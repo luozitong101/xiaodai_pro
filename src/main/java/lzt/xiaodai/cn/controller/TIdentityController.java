@@ -14,7 +14,7 @@ import org.springframework.stereotype.Controller;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tIdentity")
+@RequestMapping("/api/tIdentity")
 public class TIdentityController {
 
 }

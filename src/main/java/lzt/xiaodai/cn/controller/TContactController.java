@@ -32,7 +32,7 @@ import java.util.Map;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tContact")
+@RequestMapping("/api/tContact")
 public class TContactController {
 
     @Autowired

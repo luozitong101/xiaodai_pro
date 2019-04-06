@@ -31,7 +31,7 @@ import java.util.Map;
  * @since 2019-03-21
  */
 @Controller
-@RequestMapping("/tItem")
+@RequestMapping("/api/tItem")
 public class TItemController {
 
     @Autowired
