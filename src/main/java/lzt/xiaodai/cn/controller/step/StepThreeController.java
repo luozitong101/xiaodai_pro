@@ -34,10 +34,14 @@ public class StepThreeController {
     public ResultInfo handlerStep3(@RequestParam String mobile, @RequestBody TInfo tInfo){
         tInfoService.save(tInfo);
         List<TContact> contacts = tInfo.getContacts();
-        for (TContact contact : contacts) {
-            contact.setInfoid(tInfo.getId());
+        if (contacts != null){
+            for (TContact contact : contacts) {
+                contact.setInfoid(tInfo.getId());
+            }
+            tContactService.saveBatch(contacts);
         }
-        tContactService.saveBatch(contacts);
+
+
         TInfo one = tInfoService.getOne(new QueryWrapper<>(tInfo));
         QueryWrapper<TProject> condition = new QueryWrapper<>();
         condition.eq("mobile",mobile);

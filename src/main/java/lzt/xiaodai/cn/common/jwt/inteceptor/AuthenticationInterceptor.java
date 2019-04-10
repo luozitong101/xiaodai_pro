@@ -82,11 +82,11 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
             throw new RuntimeException("用户不存在");
         }
         String pwd = "";
-        if (register != null){
-            pwd = register.getPassword();
-        }
         if (admin != null){
             pwd = admin.getPassword();
+        }
+        if (register != null){
+            pwd = register.getPassword();
         }
         // 验证 token
         JWTVerifier jwtVerifier = JWT.require(Algorithm.HMAC256(pwd)).build();
