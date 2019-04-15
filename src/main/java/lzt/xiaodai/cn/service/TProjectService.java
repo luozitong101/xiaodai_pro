@@ -6,6 +6,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.extension.service.IService;
 import lzt.xiaodai.cn.common.TProjectVo;
 import lzt.xiaodai.cn.entity.TProject;
+import lzt.xiaodai.cn.entity.vo.Pending;
 
 import java.util.List;
 
@@ -23,6 +24,8 @@ public interface TProjectService extends IService<TProject> {
      * @return
      */
      List<TProjectVo> queryProject(long page, long rows, BaseMapper<TProject> mapper, Wrapper<TProject> wrapper);
+
+     List<Pending> queryPending(long page, long rows, BaseMapper<TProject> mapper, Wrapper<TProject> wrapper);
 
 
      List<TProjectVo> gettProjectVos(List<TProject> list);

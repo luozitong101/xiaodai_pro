@@ -75,7 +75,7 @@ public class TItemController {
 
         one.setId(null);
         one.setItemid(tItem.getId());
-        one.setPhaseid(6);
+        one.setPhaseid(5);
         tProjectService.save(one);
         List<TProject> list = new ArrayList<>();
         list.add(one);
