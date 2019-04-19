@@ -104,7 +104,7 @@ public class TProjectController {
     /**
      * 已拒
      */
-    @RequestMapping(value = "/xd/beenpayment")
+    @RequestMapping(value = "/xd/refuse")
     @ResponseBody
 
     public EasyUiDataGird<Pending> requestRefuse(@RequestParam(defaultValue = "5") String rows , @RequestParam(defaultValue = "1") String page,@RequestParam(defaultValue = "")String mobile) {
